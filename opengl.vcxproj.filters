@@ -22,4 +22,13 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Debugger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertShader.glsl" />
+    <None Include="fragShader.glsl" />
+  </ItemGroup>
 </Project>

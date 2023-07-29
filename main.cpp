@@ -1,25 +1,40 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "Debugger.h"
+#include <fstream>
+#include <string>
 
 #define numVAOs 1
 
 GLuint renderingProgram;
 GLuint vao[numVAOs];
 
+// 读取目标文本文件的函数，返回string类型的内容
+string readShaderSource(const char* filePath)
+{
+	// 定义一个存储结果的变量content
+	string content;
+	// 定义一个ifstream类型的变量fileStream
+	ifstream fileStream(filePath, ios::in);
+	// 用于循环中临时存储行
+	string line = "";
+	while (!fileStream.eof())
+	{
+		getline(fileStream, line);
+		content.append(line + "\n");
+	}
+	fileStream.close();
+	return content;
+}
+
 GLuint createShaderProgram()
 {
 	// 大致思路是首先构造两个着色器，下面是着色器的代码设置
-	const char* vshaderSource =
-		"#version 330 \n"
-		"void main(void) \n"
-		"{ gl_Position = vec4(0.0, 0.0, 0.0, 1.0); }";
+	// 读取glsl文件
+	string vertShaderStr = readShaderSource("vertShader.glsl");
+	string fragShaderStr = readShaderSource("fragShader.glsl");
 
-	const char* fshaderSource =
-		"#version 330 \n"
-		"out vec4 color; \n"
-		"void main(void) \n"
-		"{ color = vec4(0.0, 0.0, 1.0, 1.0); }";
+	// 字符串化
+	const char* vshaderSource = vertShaderStr.c_str();
+	const char* fshaderSource = fragShaderStr.c_str();
 
 	// 创建两个空的着色器，把编号存进变量里
 	GLuint vshader = glCreateShader(GL_VERTEX_SHADER);
@@ -52,7 +67,10 @@ void init(GLFWwindow* window)
 
 void display(GLFWwindow* window, double currentTime)
 {
+	// 将两个已编译着色器的程序载入OpenGL的管线阶段
 	glUseProgram(renderingProgram);
+	glPointSize(30.0f);
+	// 绘制图形
 	glDrawArrays(GL_POINTS, 0, 1);
 }
 
@@ -106,4 +124,3 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-

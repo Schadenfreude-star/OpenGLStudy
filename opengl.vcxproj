@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>F:\dev\opengl\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\dev\opengl\Libraries\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\dev\opengl\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\dev\opengl\Libraries\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>F:\dev\opengl\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\dev\opengl\Libraries\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\dev\opengl\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\dev\opengl\Libraries\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +139,13 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Debugger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragShader.glsl" />
+    <None Include="vertShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
