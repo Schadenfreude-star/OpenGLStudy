@@ -71,10 +71,10 @@ void display(GLFWwindow* window, double currentTime)
 	glUseProgram(renderingProgram);
 	glPointSize(30.0f);
 	// 绘制图形
-	glDrawArrays(GL_POINTS, 0, 1);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-int main()
+int renderRedBlueVertex()
 {
 	// 初始化 GLFW
 	glfwInit();
@@ -112,6 +112,8 @@ int main()
 	// 判断窗体关闭条件，如果点击关闭或者命令行关闭，就跳出循环
 	while (!glfwWindowShouldClose(window))
 	{
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 		display(window, glfwGetTime());
 		glfwSwapBuffers(window);
 		// 监听键盘鼠标事件
@@ -122,5 +124,11 @@ int main()
 	glfwDestroyWindow(window);
 	// 关闭 GLFW 服务
 	glfwTerminate();
+}
+
+int main()
+{
+	int renderState = renderRedBlueVertex();
+	std::cout << renderState << std::endl;
 	return 0;
 }
